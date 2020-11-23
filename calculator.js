@@ -13,7 +13,8 @@ let multiple = function multiple(a, b) {
 }
 
 let divide = function divide(a, b) {
-    return a / b;
+    let answer = a / b;
+    return answer;
 }
 
 function operate(operator, a, b) {
@@ -95,19 +96,21 @@ function keyNumber() {
 
 
 let result = 0;
-let clearValue = 0;
 let operant = add;
 
 function operatorFunction(operatorKey) {
     result = operate(operant, result, storedValue);
+    if (result > 9999999999999 && isFinite(result)) {
+        result = 9999999999999;
+    };
 
     if (operatorKey == "CLEAR") {
+        storedValue = 0;
+        result = 0;
         display.innerHTML = "";
-        if (clearValue == 2) {
-            storedValue = 0;
-            clearValue = 0;
-        }
-    } else if (operatorKey == "+") {
+    }
+
+    if (operatorKey == "+") {
         operant = add;
         
     } else if (operatorKey == "-") {
@@ -117,15 +120,38 @@ function operatorFunction(operatorKey) {
         operant = multiple;
     } else if (operatorKey == "/") {
         operant = divide;
+    } else if (operatorKey == "=") {
+        operant = add;
+        storedValue = 0;
+        display.innerHTML = resultDisplay(result);
     }
 
+    if (operatorKey != "=") {
+        if (result % 1 != 0) {
+            display.innerHTML = resultDisplay(result);
+        } else {
+            display.innerHTML = resultDisplay(result);
+        }
+        
+    }
+    if (operatorKey == "CLEAR") {
+        storedValue = 0;
+        result = 0;
+        display.innerHTML = "";
+    }
     toggle = 1;
 
-    if (result % 1)
+}
 
-
-    display.innerHTML = result.toFixed(12);
-
+function resultDisplay(result) {
+    if (!isFinite(result)) {
+        return "Divided by 0"
+    }
+    if (result % 1 != 0) {
+        return result.toFixed(12).toString().substr(0,14);
+    } else {
+        return result.toString().substr(0,14);
+    }
 }
 
 makeGridContainer(4, 3);
