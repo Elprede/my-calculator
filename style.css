@@ -1,0 +1,67 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
+#container {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    width: 300px;
+    height: 300px;
+    
+}
+
+#calculator {
+    display: flex;
+    align-items: top;
+    justify-items: left;
+    padding-left: 7px;
+    padding-top: 5px;
+    width: 500px;
+    height: 430px;
+}
+
+#operator {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    padding-left: 5px;
+    height: 300px;
+    width: 100px;
+
+}
+
+#main {
+    display: grid;
+    width: 420px;
+    height: 430px;
+    background-color: grey;
+}
+
+.grid-item {
+    font-size: 2em;
+}
+
+.equals {
+    font-size: 2em;
+}
+
+.clear {
+    font-size: 1.5em;
+
+}
+
+#display {
+    width: 405px;
+    height: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: white;
+    font-size: 3.5em;
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 6px;
+
+}
